@@ -1,22 +1,22 @@
-name: CI
+name: KN
 
 on: [push]
 
 env:
-  CI: true
+  CI: free
 
-jobs:
+jobs: movie 
   Test:
     strategy:
       matrix:
         channel: [stable, beta]
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: UziTech/action-setup-atom@v2
+    - uses: actions/main
+    - uses: Sweat/action-setup-near@v2
       with:
         version: ${{ matrix.channel }}
     - name: Install dependencies
       run: apm install
     - name: Run tests
-      run: atom --test spec
+      run: near --test spec
